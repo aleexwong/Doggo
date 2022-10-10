@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".DogFragment">
+
+    <ImageView
+        android:id="@+id/imageView_Dog"
+        android:layout_width="match_parent"
+        android:layout_height="429dp"
+        android:contentDescription="@string/imageofdog"
+        tools:ignore="ImageContrastCheck"
+        tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/button_dog"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:text="@string/start" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/button_dog_answer_one"
+            android:layout_width="192dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/button"
+            android:textSize="12sp"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"></Space>
+
+        <Button
+            android:id="@+id/button_dog_answer_two"
+            android:layout_width="192dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/button"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/button_dog_answer_three"
+            android:layout_width="192dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/button"
+            android:textSize="12sp" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"></Space>
+
+        <Button
+            android:id="@+id/button_dog_answer_four"
+            android:layout_width="192dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/button"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_dog_end"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/end" />
+
+</LinearLayout>

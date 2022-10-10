@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "145534291863",
+    "firebase_url": "https://doggo-bcit-default-rtdb.firebaseio.com",
+    "project_id": "doggo-bcit",
+    "storage_bucket": "doggo-bcit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145534291863:android:1181bc8b0a435dc89b7ed2",
+        "android_client_info": {
+          "package_name": "com.bcit.doggo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145534291863-gch4vohbo4cv72i76pg8t2e3pkk1egjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa3fhD0u6wbHOS2rXA5El9juum1e6Ai8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145534291863-gch4vohbo4cv72i76pg8t2e3pkk1egjf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

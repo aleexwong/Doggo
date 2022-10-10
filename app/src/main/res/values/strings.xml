@@ -1,0 +1,199 @@
+<resources>
+    <string name="app_name">Doggo!</string>
+    <string name="main_logintext">Login to Doggo</string>
+    <string name="main_logintab">LOGIN</string>
+    <string name="main_signuptab">SIGN UP</string>
+    <string name="main_signinwithgoogle">SIGN IN WITH GOOGLE</string>
+    <string name="main_login">LOG IN</string>
+    <string name="main_breakline">--------------- OR ---------------</string>
+    <string name="signup_signup">Sign up</string>
+    <string name="signup_createaccount">CREATE ACCOUNT</string>
+    <string name="signup_google">GOOGLE</string>
+    <string name="login_checkbox_rememberme">Remember me!</string>
+    <string name="login_emailhint">Email Address</string>
+    <string name="login_passwordhint">Password</string>
+    <string name="signup_fullname">Your First and Last Name</string>
+    <string name="signup_emailaddress">Email Address</string>
+    <string name="signup_password">Password</string>
+    <string name="username">username</string>
+    <string name="rank_no">Rank no.</string>
+    <string name="corrects">Corrects</string>
+    <string name="questions">Questions</string>
+    <string name="_69">69</string>
+    <string name="_69percent">69%</string>
+    <string name="_420">420</string>
+    <string name="start_your_doggo_today">Start your Doggo today!</string>
+    <string name="correct_percentage">Accuracy</string>
+    <string name="button">Button</string>
+    <string name="end">End Game</string>
+    <string name="start">Start</string>
+    <string name="imageofdog">imageOfDog</string>
+    <string name="Logout">logout</string>
+    <string-array name="quiz_one">
+        <item>affenpinscher</item>
+        <item>african</item>
+        <item>airedale</item>
+        <item>akita</item>
+        <item>appenzeller</item>
+        <item>shepherd australian</item>
+        <item>basenji</item>
+        <item>beagle</item>
+        <item>bluetic</item>
+        <item>borzoi</item>
+        <item>bouvier</item>
+        <item>boxer</item>
+        <item>brabancon</item>
+        <item>briard</item>
+        <item>norwegian buhund</item>
+        <item>french-bulldog</item>
+        <item>boston-bulldog</item>
+        <item>english-bulldog</item>
+        <item>staffordshire-bullterrier</item>
+        <item>australian cattledog</item>
+        <item>chihuahua</item>
+        <item>chow</item>
+        <item>clumber</item>
+        <item>cockapoo</item>
+        <item>border collie</item>
+        <item>coonhound</item>
+        <item>corgi</item>
+        <item>cardigan corgi</item>
+        <item>cotondetulear</item>
+        <item>dachshund</item>
+        <item>dalmatian</item>
+        <item>great-dane</item>
+        <item>scottish-deerhound</item>
+        <item>dhole</item>
+        <item>dingo</item>
+        <item>doberman</item>
+        <item>elkhound</item>
+        <item>norwegian</item>
+        <item>entlebucher</item>
+        <item>eskimo</item>
+        <item>finnish</item>
+        <item>lapphund</item>
+        <item>frise</item>
+        <item>bichon</item>
+        <item>german-shepherd</item>
+        <item>greyhound</item>
+        <item>italian</item>
+        <item>groenendael</item>
+        <item>havanese</item>
+        <item>hound</item>
+        <item>afghan</item>
+        <item>basset</item>
+        <item>blood</item>
+        <item>english</item>
+        <item>ibizan</item>
+        <item>plott</item>
+        <item>walker</item>
+        <item>husky</item>
+        <item>keeshond</item>
+        <item>kelpie</item>
+        <item>komondor</item>
+        <item>kuvasz</item>
+        <item>labradoodle</item>
+        <item>labrador</item>
+        <item>leonberg</item>
+        <item>lhasa</item>
+        <item>malamute</item>
+        <item>malinois</item>
+        <item>maltese</item>
+        <item>mastiff</item>
+        <item>bull</item>
+        <item>english</item>
+        <item>tibetan</item>
+        <item>mexican-hairless</item>
+        <item>mix</item>
+        <item>mountain</item>
+        <item>bernese</item>
+        <item>swiss</item>
+        <item>newfoundland</item>
+        <item>otterhound</item>
+        <item>ovcharka</item>
+        <item>caucasian</item>
+        <item>papillon</item>
+        <item>pekinese</item>
+        <item>pembroke</item>
+        <item>pinscher</item>
+        <item>miniature</item>
+        <item>pitbull</item>
+        <item>pointer</item>
+        <item>german</item>
+        <item>germanlonghair</item>
+        <item>pomeranian</item>
+        <item>poodle</item>
+        <item>miniature</item>
+        <item>standard</item>
+        <item>toy</item>
+        <item>pug</item>
+        <item>puggle</item>
+        <item>pyrenees</item>
+        <item>redbone</item>
+        <item>retriever</item>
+        <item>chesapeake</item>
+        <item>curly</item>
+        <item>flatcoated</item>
+        <item>golden</item>
+        <item>ridgeback</item>
+        <item>rhodesian</item>
+        <item>rottweiler</item>
+        <item>saluki</item>
+        <item>samoyed</item>
+        <item>schipperke</item>
+        <item>schnauzer</item>
+        <item>giant</item>
+        <item>miniature</item>
+        <item>setter</item>
+        <item>english</item>
+        <item>gordon</item>
+        <item>irish</item>
+        <item>sheepdog</item>
+        <item>english</item>
+        <item>shetland</item>
+        <item>shiba</item>
+        <item>shihtzu</item>
+        <item>spaniel</item>
+        <item>blenheim</item>
+        <item>brittany</item>
+        <item>cocker</item>
+        <item>irish</item>
+        <item>japanese</item>
+        <item>sussex</item>
+        <item>welsh</item>
+        <item>springer</item>
+        <item>english</item>
+        <item>stbernard</item>
+        <item>terrier</item>
+        <item>american-terrier</item>
+        <item>australian-terrier</item>
+        <item>bedlington-terrier</item>
+        <item>border-terrier</item>
+        <item>cairn-terrier</item>
+        <item>dandie-terrier</item>
+        <item>fox-terrier</item>
+        <item>irish-terrier</item>
+        <item>kerryblue-terrier</item>
+        <item>lakeland-terrier</item>
+        <item>norfolk-terrier</item>
+        <item>norwich-terrier</item>
+        <item>patterdale-terrier</item>
+        <item>russell-terrier</item>
+        <item>scottish-terrier</item>
+        <item>sealyham-terrier</item>
+        <item>silky-terrier</item>
+        <item>tibetan-terrier</item>
+        <item>toy-terrier</item>
+        <item>welsh-terrier</item>
+        <item>westhighland-terrier</item>
+        <item>wheaten-terrier</item>
+        <item>yorkshire-terrier</item>
+        <item>tervuren</item>
+        <item>vizsla</item>
+        <item>spanish waterdog</item>
+        <item>weimaraner</item>
+        <item>whippet</item>
+        <item>wolfhound</item>
+        <item>irish</item>
+    </string-array>
+</resources>

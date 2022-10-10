@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfile"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="20dp"
+        android:background="@color/blue"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_main"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:elevation="12dp"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:layout_marginTop="30dp"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/imageView_main_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button_main_update"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+
+            android:layout_alignBottom="@+id/cardView_main"
+            android:layout_alignEnd="@+id/cardView_main"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            android:padding="0dp"
+            app:icon="@drawable/ic_baseline_add_a_photo_24" />
+
+        <TextView
+            android:id="@+id/textView_main_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardView_main"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:includeFontPadding="true"
+            android:text="@string/username"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView_main_rank_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:includeFontPadding="false"
+            android:text="@string/correct_percentage"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/textView_main_rank_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/textView_main_rank_no"
+            android:text="@string/_69"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textView_main_corrects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:includeFontPadding="false"
+            android:text="@string/corrects"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textView_main_corrects_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/textView_main_rank_no"
+            android:layout_centerHorizontal="true"
+            android:text="@string/_69percent"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/textView_main_questions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:includeFontPadding="false"
+            android:layout_alignParentEnd="true"
+            android:text="@string/questions"
+            android:textSize="15sp"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/textView_main_questions_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/textView_main_questions"
+            android:layout_alignParentEnd="true"
+            android:text="@string/_420"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView_main_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/start_your_doggo_today"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/button_main_start"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/textView_main_intro"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/blue"
+            android:text="@string/start"
+
+            android:theme="@style/CustomTheme" />
+
+        <Button
+            android:id="@+id/button_main_logout"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/button_main_start"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/Logout"
+
+            android:theme="@style/CustomTheme" />
+
+    </RelativeLayout>
+
+</LinearLayout>

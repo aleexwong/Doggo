@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".LoginFragment">
+
+    <TextView
+        android:id="@+id/textview_login_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/main_logintext"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button_login_signingoogle"
+        style="@style/ShapeAppearance.App.SmallComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/main_signinwithgoogle" />
+
+    <TextView
+        android:id="@+id/textview_login_break"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/main_breakline"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/edittext_login_emailaddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/login_emailhint"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/edittext_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/login_passwordhint"
+        android:inputType="textPassword"
+        android:minHeight="48dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"/>
+
+    <ProgressBar
+        android:id="@+id/progressbar_login"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/button_login_login"
+        style="@style/ShapeAppearance.App.SmallComponent"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/main_login" />
+
+</LinearLayout>
