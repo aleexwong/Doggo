@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { GameState } from '../game/state'
 import { AppBar } from './PhoneFrame'
+import { Wordmark } from './Logo'
 
 export function GameScreen({
   state,
@@ -38,7 +39,7 @@ export function GameScreen({
 
   return (
     <div className="app-shell">
-      <AppBar title="Doggo" onBack={onQuit} trailing={hudRight} />
+      <AppBar title={<Wordmark size={20} />} onBack={onQuit} trailing={hudRight} />
       <div className="screen game">
         <div className="hud">
           <span className="chip score-chip">

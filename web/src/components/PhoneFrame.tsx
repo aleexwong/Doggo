@@ -57,7 +57,7 @@ export function AppBar({
   onBack,
   trailing,
 }: {
-  title: string
+  title: ReactNode
   onBack?: () => void
   trailing?: ReactNode
 }) {

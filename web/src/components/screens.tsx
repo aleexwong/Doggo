@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GameState, Mode, BLITZ_SECONDS } from '../game/state'
 import { AppBar } from './PhoneFrame'
+import { PawMark, Wordmark } from './Logo'
 
 export function BootScreen({ onDone }: { onDone: () => void }) {
   useEffect(() => {
@@ -9,7 +10,7 @@ export function BootScreen({ onDone }: { onDone: () => void }) {
   }, [onDone])
   return (
     <div className="screen boot" onClick={onDone}>
-      <div className="boot-logo" aria-hidden="true">🐶</div>
+      <div className="boot-paw" aria-hidden="true"><PawMark size={72} /></div>
       <div className="boot-name">Doggo</div>
       <div className="boot-sub">by alex wong</div>
     </div>
@@ -27,7 +28,7 @@ export function HomeScreen({
 }) {
   return (
     <div className="app-shell">
-      <AppBar title="Doggo" />
+      <AppBar title={<Wordmark />} />
       <div className="screen home">
         <div className="hero">
           <div className="hero-avatar" aria-hidden="true">🐶</div>
@@ -59,7 +60,7 @@ export function HomeScreen({
 export function LoadingScreen() {
   return (
     <div className="app-shell">
-      <AppBar title="Doggo" />
+      <AppBar title={<Wordmark />} />
       <div className="screen loading" role="status" aria-label="Loading">
         <div className="paw-spinner" aria-hidden="true">🐾</div>
         <p className="tagline">Fetching good dogs…</p>
