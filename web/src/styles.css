@@ -17,7 +17,10 @@
   --md-outline: #c3c8bc;
   --md-error: #ba1a1a;
   --md-error-container: #ffdad6;
-  --radius: 46px;
+  /* Frame geometry: inner radius = outer radius - bezel, keeps corners concentric */
+  --bezel-w: 9px;
+  --outer-r: 44px;
+  --inner-r: calc(var(--outer-r) - var(--bezel-w));
 }
 
 body {
@@ -45,13 +48,14 @@ body {
 .phone {
   width: min(380px, 94vw);
   aspect-ratio: 9 / 19;
-  background: linear-gradient(160deg, #33363e, var(--bezel) 35%, #0c0d10);
-  border-radius: var(--radius);
-  padding: 10px;
+  background: #050608;
+  border: 1px solid #3d424d;
+  border-radius: var(--outer-r);
+  padding: calc(var(--bezel-w) - 1px);
   box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.55),
-    inset 0 1px 1px rgba(255, 255, 255, 0.14),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.6);
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 2.5px #24272e;
   position: relative;
 }
 
@@ -72,7 +76,8 @@ body {
   height: 100%;
   background: var(--md-surface);
   color: var(--md-on-surface);
-  border-radius: calc(var(--radius) - 10px);
+  border-radius: var(--inner-r);
+  outline: 1px solid rgba(0, 0, 0, 0.9);
   overflow: hidden;
   display: flex;
   flex-direction: column;
