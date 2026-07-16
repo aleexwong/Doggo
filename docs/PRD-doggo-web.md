@@ -218,11 +218,14 @@ repo/deploy, its own release cadence, zero impact on the site's bundle.
   standalone deployment (see 4.5). The game does not ship as an npm package
   or in the site's repo.
 
+- The game lives in a **new repo** (e.g. `doggo-web`), separate from this
+  Android source repo. This repo stays as-is; the PRD here documents the
+  plan and the original app's behavior. The web repo's README links back
+  here as "the original Android app".
+
 **Open:**
-1. Should the game live in a new repo (e.g. `doggo-web`) or a `web/` folder
-   in this repo alongside the Android source?
-2. Is a leaderboard worth the backend cost for v1, or is local best +
+1. Is a leaderboard worth the backend cost for v1, or is local best +
    share-to-clipboard enough? (PRD assumes the latter.)
-3. Reuse the original app's launcher icon/branding assets from
+2. Reuse the original app's launcher icon/branding assets from
    `app/src/main/res/` or refresh the branding?
-4. Deploy target for the standalone game (Vercel project? subdomain?).
+3. Deploy target for the standalone game (Vercel project? subdomain?).
