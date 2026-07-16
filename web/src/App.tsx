@@ -86,14 +86,14 @@ export default function App() {
 
   return (
     <div className="page">
-      <PhoneFrame>
+      <PhoneFrame dark={state.phase === 'boot'}>
         {state.phase === 'boot' && <BootScreen onDone={() => dispatch({ type: 'BOOTED' })} />}
         {state.phase === 'home' && (
           <HomeScreen bestStreak={state.bestStreak} bestBlitz={state.bestBlitz} onStart={start} />
         )}
         {state.phase === 'loading' && <LoadingScreen />}
         {(state.phase === 'playing' || state.phase === 'reveal') && (
-          <GameScreen state={state} onAnswer={onAnswer} />
+          <GameScreen state={state} onAnswer={onAnswer} onQuit={() => dispatch({ type: 'HOME' })} />
         )}
         {state.phase === 'gameover' && (
           <GameOverScreen
@@ -102,7 +102,9 @@ export default function App() {
             onHome={() => dispatch({ type: 'HOME' })}
           />
         )}
-        {state.phase === 'error' && <ErrorScreen onRetry={() => start(state.mode)} />}
+        {state.phase === 'error' && (
+          <ErrorScreen onRetry={() => start(state.mode)} onHome={() => dispatch({ type: 'HOME' })} />
+        )}
       </PhoneFrame>
       <p className="footer">
         A web remake of the{' '}

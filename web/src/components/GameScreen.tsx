@@ -1,12 +1,15 @@
 import { useEffect } from 'react'
 import { GameState } from '../game/state'
+import { AppBar } from './PhoneFrame'
 
 export function GameScreen({
   state,
   onAnswer,
+  onQuit,
 }: {
   state: GameState
   onAnswer: (path: string) => void
+  onQuit: () => void
 }) {
   const { round, picked, phase } = state
   const revealing = phase === 'reveal' || phase === 'gameover'
@@ -24,50 +27,55 @@ export function GameScreen({
 
   if (!round) return null
 
+  const hudRight =
+    state.mode === 'blitz' ? (
+      <span className={`chip timer-chip ${state.timeLeft <= 10 ? 'urgent' : ''}`}>
+        {state.timeLeft}s
+      </span>
+    ) : (
+      <span className="chip">best {state.bestStreak}</span>
+    )
+
   return (
-    <div className="screen game">
-      <div className="hud">
-        <span className="hud-score">
-          {state.mode === 'streak' ? `🔥 ${state.streak}` : `🐶 ${state.score}`}
-        </span>
-        {state.mode === 'blitz' && (
-          <span className={`hud-timer ${state.timeLeft <= 10 ? 'urgent' : ''}`}>
-            ⏱ {state.timeLeft}s
+    <div className="app-shell">
+      <AppBar title="Doggo" onBack={onQuit} trailing={hudRight} />
+      <div className="screen game">
+        <div className="hud">
+          <span className="chip score-chip">
+            {state.mode === 'streak' ? `🔥 Streak ${state.streak}` : `🐶 Score ${state.score}`}
           </span>
-        )}
-        <span className="hud-best">
-          best {state.mode === 'streak' ? state.bestStreak : state.bestBlitz}
-        </span>
-      </div>
-      <div className="dog-card">
-        <img src={round.imageUrl} alt="A dog photo — guess the breed!" />
-      </div>
-      <div className="answers" role="group" aria-label="Breed choices">
-        {round.choices.map((b) => {
-          let cls = 'answer'
-          if (revealing) {
-            if (b.path === round.answer.path) cls += ' correct'
-            else if (b.path === picked) cls += ' wrong'
-            else cls += ' dim'
-          }
-          return (
-            <button
-              key={b.path}
-              className={cls}
-              disabled={revealing}
-              onClick={() => onAnswer(b.path)}
-            >
-              {b.name}
-            </button>
-          )
-        })}
-      </div>
-      <div aria-live="polite" className="sr-only">
-        {revealing && picked
-          ? picked === round.answer.path
-            ? `Correct! It's a ${round.answer.name}.`
-            : `Wrong — it was a ${round.answer.name}.`
-          : ''}
+          <span className="question">What breed is this?</span>
+        </div>
+        <div className="dog-card elevated">
+          <img src={round.imageUrl} alt="A dog photo — guess the breed!" />
+        </div>
+        <div className="answers" role="group" aria-label="Breed choices">
+          {round.choices.map((b) => {
+            let cls = 'answer'
+            if (revealing) {
+              if (b.path === round.answer.path) cls += ' correct'
+              else if (b.path === picked) cls += ' wrong'
+              else cls += ' dim'
+            }
+            return (
+              <button
+                key={b.path}
+                className={cls}
+                disabled={revealing}
+                onClick={() => onAnswer(b.path)}
+              >
+                {b.name}
+              </button>
+            )
+          })}
+        </div>
+        <div aria-live="polite" className="sr-only">
+          {revealing && picked
+            ? picked === round.answer.path
+              ? `Correct! It's a ${round.answer.name}.`
+              : `Wrong — it was a ${round.answer.name}.`
+            : ''}
+        </div>
       </div>
     </div>
   )

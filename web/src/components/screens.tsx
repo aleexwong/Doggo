@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GameState, Mode, BLITZ_SECONDS } from '../game/state'
+import { AppBar } from './PhoneFrame'
 
 export function BootScreen({ onDone }: { onDone: () => void }) {
   useEffect(() => {
@@ -10,6 +11,7 @@ export function BootScreen({ onDone }: { onDone: () => void }) {
     <div className="screen boot" onClick={onDone}>
       <div className="boot-logo" aria-hidden="true">🐶</div>
       <div className="boot-name">Doggo</div>
+      <div className="boot-sub">by alex wong</div>
     </div>
   )
 }
@@ -24,38 +26,58 @@ export function HomeScreen({
   onStart: (mode: Mode) => void
 }) {
   return (
-    <div className="screen home">
-      <div className="boot-logo" aria-hidden="true">🐶</div>
-      <h1>Doggo</h1>
-      <p className="tagline">How many dog breeds can you name?</p>
-      <button className="primary" onClick={() => onStart('streak')}>
-        ▶ Endless Streak
-        {bestStreak > 0 && <span className="best">best {bestStreak}</span>}
-      </button>
-      <button className="primary blitz" onClick={() => onStart('blitz')}>
-        ⏱ {BLITZ_SECONDS}s Blitz
-        {bestBlitz > 0 && <span className="best">best {bestBlitz}</span>}
-      </button>
+    <div className="app-shell">
+      <AppBar title="Doggo" />
+      <div className="screen home">
+        <div className="hero">
+          <div className="hero-avatar" aria-hidden="true">🐶</div>
+          <h1>Guess the breed!</h1>
+          <p className="tagline">A photo appears — you have four choices.</p>
+        </div>
+        <button className="mode-card" onClick={() => onStart('streak')}>
+          <span className="mode-icon streak-icon" aria-hidden="true">🔥</span>
+          <span className="mode-text">
+            <span className="mode-name">Endless Streak</span>
+            <span className="mode-desc">Play until you miss</span>
+          </span>
+          <span className="mode-best">{bestStreak > 0 ? `Best ${bestStreak}` : 'New'}</span>
+        </button>
+        <button className="mode-card" onClick={() => onStart('blitz')}>
+          <span className="mode-icon blitz-icon" aria-hidden="true">⏱</span>
+          <span className="mode-text">
+            <span className="mode-name">{BLITZ_SECONDS}s Blitz</span>
+            <span className="mode-desc">Beat the clock</span>
+          </span>
+          <span className="mode-best">{bestBlitz > 0 ? `Best ${bestBlitz}` : 'New'}</span>
+        </button>
+        <p className="home-footnote">Photos from Dog.CEO · no sign-in needed</p>
+      </div>
     </div>
   )
 }
 
 export function LoadingScreen() {
   return (
-    <div className="screen loading" role="status" aria-label="Loading">
-      <div className="paw-spinner" aria-hidden="true">🐾</div>
-      <p>Fetching good dogs…</p>
+    <div className="app-shell">
+      <AppBar title="Doggo" />
+      <div className="screen loading" role="status" aria-label="Loading">
+        <div className="paw-spinner" aria-hidden="true">🐾</div>
+        <p className="tagline">Fetching good dogs…</p>
+      </div>
     </div>
   )
 }
 
-export function ErrorScreen({ onRetry }: { onRetry: () => void }) {
+export function ErrorScreen({ onRetry, onHome }: { onRetry: () => void; onHome: () => void }) {
   return (
-    <div className="screen error">
-      <div className="boot-logo" aria-hidden="true">💤</div>
-      <p>The dogs are napping.</p>
-      <p className="tagline">Couldn't reach the dog photo service.</p>
-      <button className="primary" onClick={onRetry}>Try again</button>
+    <div className="app-shell">
+      <AppBar title="Doggo" onBack={onHome} />
+      <div className="screen error">
+        <div className="boot-logo" aria-hidden="true">💤</div>
+        <p className="error-title">The dogs are napping</p>
+        <p className="tagline">Couldn't reach the dog photo service.</p>
+        <button className="btn-filled" onClick={onRetry}>Try again</button>
+      </div>
     </div>
   )
 }
@@ -78,7 +100,7 @@ export function GameOverScreen({
 }) {
   const [copied, setCopied] = useState(false)
   const isStreak = state.mode === 'streak'
-  const result = isStreak ? state.score : state.score
+  const result = state.score
   const share = async () => {
     const text = isStreak
       ? `I identified ${result} dog breeds in a row on Doggo 🐶 ${location.href}`
@@ -96,20 +118,22 @@ export function GameOverScreen({
     }
   }
   return (
-    <div className="screen gameover">
-      <h2>{isStreak ? 'Streak over!' : "Time's up!"}</h2>
-      <div className="final-score">{result}</div>
-      <p className="tagline">
-        {isStreak ? 'breeds in a row' : 'breeds identified'}
-      </p>
-      {streakTitle(result) && <p className="title-earned">{streakTitle(result)}</p>}
-      <p className="best-line">
-        Best: {isStreak ? state.bestStreak : state.bestBlitz}
-      </p>
-      <button className="primary" onClick={onPlayAgain}>Play again</button>
-      <div className="row">
-        <button onClick={share}>{copied ? 'Copied!' : 'Share score'}</button>
-        <button onClick={onHome}>Home</button>
+    <div className="app-shell">
+      <AppBar title={isStreak ? 'Streak over' : "Time's up"} onBack={onHome} />
+      <div className="screen gameover">
+        <div className="result-card">
+          <div className="final-score">{result}</div>
+          <p className="tagline">{isStreak ? 'breeds in a row' : 'breeds identified'}</p>
+          {streakTitle(result) && <p className="title-earned">{streakTitle(result)}</p>}
+          <p className="best-line">
+            Personal best · {isStreak ? state.bestStreak : state.bestBlitz}
+          </p>
+        </div>
+        <button className="btn-filled" onClick={onPlayAgain}>Play again</button>
+        <div className="row">
+          <button className="btn-tonal" onClick={share}>{copied ? 'Copied!' : 'Share score'}</button>
+          <button className="btn-text" onClick={onHome}>Home</button>
+        </div>
       </div>
     </div>
   )
