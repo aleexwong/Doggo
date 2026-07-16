@@ -113,12 +113,22 @@ Reference source: `app/src/main/java/com/bcit/doggo/`
   `I identified 14 dog breeds in a row on Doggo 🐶 <url>` to clipboard
   (Web Share API on mobile).
 
-### 4.5 Site integration (v1)
+### 4.5 Site integration (v1) — iframe embed
 
-- Delivered as a self-contained React component/package importable by the
-  personal website (exact repo/route to match the site's stack).
-- Route suggestion: `/doggo` (direct link for sharing) plus an embed on the
-  projects page.
+The personal site is **Next.js**; the game is embedded via **iframe** rather
+than imported as a component. This keeps the game fully decoupled: its own
+repo/deploy, its own release cadence, zero impact on the site's bundle.
+
+- Game deploys as a standalone static app at its own URL
+  (e.g. `doggo.<yourdomain>` or a Vercel project URL).
+- The Next site embeds it on the projects page (and optionally a `/doggo`
+  page) with a lazy-loaded iframe:
+  `loading="lazy"`, fixed phone aspect-ratio wrapper, `allow="clipboard-write"`
+  (needed for the share button), `title="Doggo dog breed guessing game"`.
+- The standalone URL doubles as the shareable link — the share button points
+  there, so shared scores open the full-page game, not the portfolio embed.
+- The game page itself must look intentional when visited directly: centered
+  phone frame on a simple backdrop with a link back to the portfolio.
 - SEO/social: OpenGraph card with a screenshot of the phone frame.
 - A "View original Android source" link back to this GitHub repo.
 
@@ -137,8 +147,9 @@ Reference source: `app/src/main/java/com/bcit/doggo/`
 
 ### 5.1 Stack
 
-- **React 18+** with TypeScript, Vite (or matching the site's existing
-  toolchain — confirm before scaffolding).
+- **React 18+** with TypeScript + **Vite**, as a standalone static app.
+  Since integration is an iframe, the game doesn't need to match the Next.js
+  site's toolchain — Vite keeps it light and free of framework overhead.
 - Plain CSS modules or Tailwind (match site convention) — no game engine
   needed; this is DOM/CSS animation territory. Framer Motion optional for
   transitions.
@@ -190,7 +201,7 @@ Reference source: `app/src/main/java/com/bcit/doggo/`
 | M1 | Playable core | Breed fetch, round loop, endless streak, plain UI | 1–2 days |
 | M2 | Phone frame | `<PhoneFrame>`, status bar, boot animation, responsive | 1–2 days |
 | M3 | Polish | Animations, sounds, milestones, error/loading states | 1–2 days |
-| M4 | Site integration | Route/embed on personal site, OG card, share button | 1 day |
+| M4 | Deploy + embed | Standalone deploy, iframe on Next site, OG card, share button | 1 day |
 | M5 | Blitz mode + a11y pass | Timed mode, keyboard play, reduced motion | 1 day |
 
 ## 7. Success Metrics
@@ -200,13 +211,18 @@ Reference source: `app/src/main/java/com/bcit/doggo/`
 - Game loads and first round is playable < 2 s on mobile.
 - Zero-crash: API failure never shows a broken UI.
 
-## 8. Open Questions
+## 8. Decisions & Open Questions
 
-1. What stack is the personal website on (Next.js? Vite SPA?) — determines
-   packaging (route in the same repo vs. separate package vs. iframe embed).
-2. Should this live in a new repo (e.g. `doggo-web`) or a `web/` folder in
-   this repo alongside the Android source?
-3. Is a leaderboard worth the backend cost for v1, or is local best +
+**Decided:**
+- Personal site is **Next.js**; integration is a lazy-loaded **iframe** of a
+  standalone deployment (see 4.5). The game does not ship as an npm package
+  or in the site's repo.
+
+**Open:**
+1. Should the game live in a new repo (e.g. `doggo-web`) or a `web/` folder
+   in this repo alongside the Android source?
+2. Is a leaderboard worth the backend cost for v1, or is local best +
    share-to-clipboard enough? (PRD assumes the latter.)
-4. Reuse the original app's launcher icon/branding assets from
+3. Reuse the original app's launcher icon/branding assets from
    `app/src/main/res/` or refresh the branding?
+4. Deploy target for the standalone game (Vercel project? subdomain?).
