@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/components/GameScreen.tsx","./src/components/PhoneFrame.tsx","./src/components/screens.tsx","./src/game/api.ts","./src/game/rounds.ts","./src/game/state.ts"],"version":"5.9.3"}
