@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
+import { LeaderboardScreen } from './components/Leaderboard'
 import { PhoneFrame } from './components/PhoneFrame'
 import { GameScreen } from './components/GameScreen'
 import {
@@ -17,6 +18,7 @@ const REVEAL_MS = 1200
 export default function App() {
   const [state, dispatch] = useReducer(reducer, undefined, initialState)
   const [breeds, setBreeds] = useState<Breed[] | null>(null)
+  const [showBoard, setShowBoard] = useState(false)
   const breedsRef = useRef<Breed[] | null>(null)
 
   useEffect(() => {
@@ -87,23 +89,35 @@ export default function App() {
   return (
     <div className="page">
       <PhoneFrame dark={state.phase === 'boot'}>
-        {state.phase === 'boot' && <BootScreen onDone={() => dispatch({ type: 'BOOTED' })} />}
-        {state.phase === 'home' && (
-          <HomeScreen bestStreak={state.bestStreak} bestBlitz={state.bestBlitz} onStart={start} />
-        )}
-        {state.phase === 'loading' && <LoadingScreen />}
-        {(state.phase === 'playing' || state.phase === 'reveal') && (
-          <GameScreen state={state} onAnswer={onAnswer} onQuit={() => dispatch({ type: 'HOME' })} />
-        )}
-        {state.phase === 'gameover' && (
-          <GameOverScreen
-            state={state}
-            onPlayAgain={() => start(state.mode)}
-            onHome={() => dispatch({ type: 'HOME' })}
-          />
-        )}
-        {state.phase === 'error' && (
-          <ErrorScreen onRetry={() => start(state.mode)} onHome={() => dispatch({ type: 'HOME' })} />
+        {showBoard ? (
+          <LeaderboardScreen initialMode={state.mode} onBack={() => setShowBoard(false)} />
+        ) : (
+          <>
+            {state.phase === 'boot' && <BootScreen onDone={() => dispatch({ type: 'BOOTED' })} />}
+            {state.phase === 'home' && (
+              <HomeScreen
+                bestStreak={state.bestStreak}
+                bestBlitz={state.bestBlitz}
+                onStart={start}
+                onBoard={() => setShowBoard(true)}
+              />
+            )}
+            {state.phase === 'loading' && <LoadingScreen />}
+            {(state.phase === 'playing' || state.phase === 'reveal') && (
+              <GameScreen state={state} onAnswer={onAnswer} onQuit={() => dispatch({ type: 'HOME' })} />
+            )}
+            {state.phase === 'gameover' && (
+              <GameOverScreen
+                state={state}
+                onPlayAgain={() => start(state.mode)}
+                onHome={() => dispatch({ type: 'HOME' })}
+                onBoard={() => setShowBoard(true)}
+              />
+            )}
+            {state.phase === 'error' && (
+              <ErrorScreen onRetry={() => start(state.mode)} onHome={() => dispatch({ type: 'HOME' })} />
+            )}
+          </>
         )}
       </PhoneFrame>
       <p className="footer">

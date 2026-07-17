@@ -426,7 +426,83 @@ button { font: inherit; cursor: pointer; }
   font-weight: 600;
 }
 .missed-line strong { color: var(--md-on-surface); }
-.row { display: flex; gap: 10px; }
+.row { display: flex; gap: 6px; align-items: center; }
+.row button { white-space: nowrap; padding-left: 16px; padding-right: 16px; }
+
+/* ---------- Leaderboard ---------- */
+
+.board { justify-content: flex-start; padding: 18px 16px; gap: 14px; }
+.board-title { font-family: Fredoka, Roboto, system-ui, sans-serif; font-size: 24px; font-weight: 600; }
+
+.segmented {
+  display: flex;
+  width: 100%;
+  border: 1.5px solid var(--md-outline);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--md-surface);
+}
+.seg {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 9px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--md-on-surface-variant);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.seg.active { background: var(--md-secondary-container); color: var(--md-on-surface); font-weight: 600; }
+
+.board-list { list-style: none; width: 100%; display: flex; flex-direction: column; gap: 7px; }
+.board-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--md-surface-container);
+  border-radius: 14px;
+  padding: 11px 14px;
+  text-align: left;
+}
+.board-row.podium { background: var(--md-primary-container); }
+.board-row.skeleton {
+  height: 44px;
+  background: linear-gradient(110deg, var(--md-surface-container) 30%, #f2f5ec 50%, var(--md-surface-container) 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+.board-rank { width: 28px; font-weight: 700; font-size: 15px; text-align: center; }
+.board-name {
+  flex: 1;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.board-score { font-family: Fredoka, Roboto, system-ui, sans-serif; font-weight: 600; font-size: 17px; color: var(--md-primary); }
+.board-empty { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 36px; color: var(--md-outline); }
+
+/* Post-score row on game over */
+.post-row { display: flex; gap: 8px; width: 100%; }
+.nick-input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 14px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--md-outline);
+  background: var(--md-surface);
+  color: var(--md-on-surface);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.nick-input:focus { border-color: var(--md-primary); box-shadow: 0 0 0 3px rgba(62, 104, 55, 0.15); }
+.nick-input::placeholder { color: var(--md-on-surface-variant); }
+.post-row .btn-tonal:disabled { opacity: 0.5; cursor: default; }
+.post-note { font-size: 13px; color: var(--md-on-surface-variant); }
+.post-note.posted { color: var(--md-on-surface); font-weight: 500; }
+.btn-text.inline { padding: 0 2px; font-size: 13px; font-weight: 600; }
 
 .sr-only {
   position: absolute;
