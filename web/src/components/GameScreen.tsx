@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { GameState } from '../game/state'
 import { AppBar } from './PhoneFrame'
-import { Wordmark } from './Logo'
+import { PawMark, Wordmark } from './Logo'
 
 export function GameScreen({
   state,
@@ -14,6 +14,10 @@ export function GameScreen({
 }) {
   const { round, picked, phase } = state
   const revealing = phase === 'reveal' || phase === 'gameover'
+  const milestone =
+    phase === 'reveal' &&
+    picked === round?.answer.path &&
+    [5, 10, 25, 50].includes(state.streak)
 
   // Keyboard play: 1-4 selects an answer.
   useEffect(() => {
@@ -49,6 +53,16 @@ export function GameScreen({
         </div>
         <div className="dog-card elevated">
           <img src={round.imageUrl} alt="A dog photo — guess the breed!" />
+          {milestone && (
+            <div className="paw-burst" aria-hidden="true">
+              {Array.from({ length: 8 }, (_, i) => (
+                <span key={i} className="burst-paw">
+                  <PawMark size={22} />
+                </span>
+              ))}
+              <span className="burst-label">{state.streak} streak!</span>
+            </div>
+          )}
         </div>
         <div className="answers" role="group" aria-label="Breed choices">
           {round.choices.map((b) => {

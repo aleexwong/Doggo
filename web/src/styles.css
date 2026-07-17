@@ -202,7 +202,7 @@ body {
 @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
 
 /* Home */
-.home { justify-content: flex-start; padding-top: 26px; gap: 14px; }
+.home { justify-content: center; padding: 20px 16px; gap: 14px; }
 .hero { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 8px; }
 .hero-avatar {
   width: 84px;
@@ -260,7 +260,10 @@ body {
   padding: 4px 10px;
   border-radius: 999px;
 }
-.home-footnote { margin-top: auto; font-size: 11px; color: var(--md-on-surface-variant); padding-bottom: 4px; }
+.home-footnote { margin-top: 10px; font-size: 11px; color: var(--md-on-surface-variant); }
+.streak-icon { color: #d9542b; }
+.blitz-icon { color: #3b5fa0; }
+.error-paw { color: var(--md-outline); }
 
 /* ---------- Buttons (Material) ---------- */
 
@@ -325,7 +328,50 @@ button { font: inherit; cursor: pointer; }
   background-size: 200% 100%;
   animation: shimmer 1.2s linear infinite;
 }
-.dog-card.elevated { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18); }
+.dog-card.elevated { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18); position: relative; }
+
+/* Streak milestone celebration: paws burst out from the photo center */
+.paw-burst {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.burst-paw {
+  position: absolute;
+  color: #fff;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+  animation: burst 0.9s ease-out forwards;
+}
+.burst-paw:nth-child(1) { --bx: -90px; --by: -60px; }
+.burst-paw:nth-child(2) { --bx: 90px; --by: -60px; animation-delay: 0.04s; }
+.burst-paw:nth-child(3) { --bx: -110px; --by: 10px; animation-delay: 0.08s; }
+.burst-paw:nth-child(4) { --bx: 110px; --by: 10px; animation-delay: 0.02s; }
+.burst-paw:nth-child(5) { --bx: -60px; --by: 80px; animation-delay: 0.06s; }
+.burst-paw:nth-child(6) { --bx: 60px; --by: 80px; animation-delay: 0.1s; }
+.burst-paw:nth-child(7) { --bx: -30px; --by: -100px; animation-delay: 0.05s; }
+.burst-paw:nth-child(8) { --bx: 30px; --by: -100px; animation-delay: 0.09s; }
+@keyframes burst {
+  0% { transform: translate(0, 0) scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--bx), var(--by)) scale(1.15) rotate(25deg); opacity: 0; }
+}
+.burst-label {
+  font-family: Fredoka, Roboto, system-ui, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  animation: label-pop 0.9s ease-out forwards;
+}
+@keyframes label-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  25% { transform: scale(1.1); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
 @keyframes shimmer { to { background-position: -200% 0; } }
 .dog-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -371,6 +417,8 @@ button { font: inherit; cursor: pointer; }
 .final-score { font-size: 64px; font-weight: 700; color: var(--md-primary); line-height: 1; }
 .title-earned { font-weight: 500; }
 .best-line { color: var(--md-on-surface-variant); font-size: 13px; }
+.missed-line { font-size: 14px; color: var(--md-on-surface-variant); }
+.missed-line strong { color: var(--md-on-surface); }
 .row { display: flex; gap: 10px; }
 
 .sr-only {
@@ -382,5 +430,7 @@ button { font: inherit; cursor: pointer; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .boot-logo, .paw-spinner, .timer-chip.urgent, .answer.wrong, .dog-card { animation: none; }
+  .boot-logo, .boot-paw, .paw-spinner, .timer-chip.urgent, .answer.wrong, .dog-card,
+  .burst-paw, .burst-label { animation: none; }
+  .burst-paw { opacity: 0; }
 }
