@@ -87,11 +87,30 @@ export function ErrorScreen({ onRetry, onHome }: { onRetry: () => void; onHome: 
   )
 }
 
-function streakTitle(n: number): string {
-  if (n >= 25) return 'Legendary Dog Whisperer 🏆'
-  if (n >= 10) return 'Certified Dog Expert 🐾'
-  if (n >= 5) return 'Good Human! 🦴'
-  return ''
+/** Every run earns a rank — the ladder is the reason to play again. */
+function earnedTitle(mode: Mode, n: number): string {
+  const ladder: [number, string][] =
+    mode === 'streak'
+      ? [
+          [50, 'Legendary Best Friend 🏆'],
+          [25, 'Dog Whisperer ✨'],
+          [15, 'Kennel Club Judge 🎖️'],
+          [10, 'Certified Dog Expert 🐾'],
+          [5, 'Good Human 🦴'],
+          [3, 'Dog Park Regular 🎾'],
+          [1, 'Puppy in Training 🐕'],
+          [0, 'Ruff Start 😅'],
+        ]
+      : [
+          [40, 'Speed of Zoomies 🏆'],
+          [30, 'Fastest Snoot in the West ✨'],
+          [20, 'Fetch Champion 🎖️'],
+          [12, 'Quick Sniffer 🐾'],
+          [6, 'Warming Up 🎾'],
+          [1, 'Slow and Steady 🐢'],
+          [0, 'Ruff Start 😅'],
+        ]
+  return ladder.find(([min]) => n >= min)![1]
 }
 
 export function GameOverScreen({
@@ -110,10 +129,13 @@ export function GameOverScreen({
       ? state.round.answer.name
       : null
   const result = state.score
+  const best = isStreak ? state.bestStreak : state.bestBlitz
+  const isNewBest = result > 0 && result >= best
   const share = async () => {
-    const text = isStreak
-      ? `I identified ${result} dog breeds in a row on Doggo 🐶 ${location.href}`
-      : `I identified ${result} dog breeds in ${BLITZ_SECONDS} seconds on Doggo 🐶 ${location.href}`
+    const feat = isStreak
+      ? `${result} dog breeds in a row`
+      : `${result} dog breeds in ${BLITZ_SECONDS} seconds`
+    const text = `${earnedTitle(state.mode, result)} — I named ${feat} on Doggo 🐶 ${location.href}`
     try {
       if (navigator.share) {
         await navigator.share({ text })
@@ -134,10 +156,12 @@ export function GameOverScreen({
           <div className="final-score">{result}</div>
           <p className="tagline">{isStreak ? 'breeds in a row' : 'breeds identified'}</p>
           {missedBreed && <p className="missed-line">That last one was a <strong>{missedBreed}</strong></p>}
-          {streakTitle(result) && <p className="title-earned">{streakTitle(result)}</p>}
-          <p className="best-line">
-            Personal best · {isStreak ? state.bestStreak : state.bestBlitz}
-          </p>
+          <p className="title-earned">{earnedTitle(state.mode, result)}</p>
+          {isNewBest ? (
+            <p className="best-line new-best">New personal best!</p>
+          ) : (
+            <p className="best-line">Personal best · {best}</p>
+          )}
         </div>
         <button className="btn-filled" onClick={onPlayAgain}>Play again</button>
         <div className="row">

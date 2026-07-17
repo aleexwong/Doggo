@@ -418,6 +418,13 @@ button { font: inherit; cursor: pointer; }
 .title-earned { font-weight: 500; }
 .best-line { color: var(--md-on-surface-variant); font-size: 13px; }
 .missed-line { font-size: 14px; color: var(--md-on-surface-variant); }
+.new-best {
+  color: var(--md-on-primary-container) !important;
+  background: var(--md-primary-container);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
 .missed-line strong { color: var(--md-on-surface); }
 .row { display: flex; gap: 10px; }
 
