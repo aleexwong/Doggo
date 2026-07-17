@@ -13,8 +13,30 @@ on a personal site via iframe.
 - **60s Blitz** — identify as many breeds as you can in a minute.
 - Keyboard: press <kbd>1</kbd>–<kbd>4</kbd> to answer.
 
-Photos from the free [Dog.CEO API](https://dog.ceo/dog-api/). No backend, no
-auth — best scores live in `localStorage`.
+Photos from the free [Dog.CEO API](https://dog.ceo/dog-api/). No auth — best
+scores live in `localStorage`.
+
+## Top Dogs leaderboard (optional)
+
+Scores can be posted to a global leaderboard backed by the original Doggo
+app's Firebase project via the Firestore REST API. Copy `.env.example` to
+`.env.local` (or set the variables in your deploy environment) with the
+`project_id` and `api_key` from `../app/google-services.json`. Unset, the
+leaderboard UI hides itself entirely.
+
+Firestore rules need to allow public reads and creates on the
+`web_leaderboard_streak` and `web_leaderboard_blitz` collections, e.g.:
+
+```
+match /web_leaderboard_{mode}/{doc} {
+  allow read: if true;
+  allow create: if request.resource.data.name is string
+    && request.resource.data.name.size() <= 16
+    && request.resource.data.score is int
+    && request.resource.data.score >= 0
+    && request.resource.data.score < 10000;
+}
+```
 
 ## Develop
 

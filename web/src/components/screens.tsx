@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 import { GameState, Mode, BLITZ_SECONDS } from '../game/state'
-import { loadNickname, saveNickname, submitScore, validName, NAME_MAX } from '../game/leaderboard'
+import {
+  leaderboardEnabled,
+  loadNickname,
+  saveNickname,
+  submitScore,
+  validName,
+  NAME_MAX,
+} from '../game/leaderboard'
 import { AppBar } from './PhoneFrame'
 import { PawMark, Wordmark } from './Logo'
 
@@ -34,11 +41,13 @@ export function HomeScreen({
       <AppBar
         title={<Wordmark />}
         trailing={
+          leaderboardEnabled && (
           <button className="appbar-icon" onClick={onBoard} aria-label="Leaderboard">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 5h-2V3H7v2H5a2 2 0 0 0-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7a2 2 0 0 0-2-2ZM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8Zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1Z" />
             </svg>
           </button>
+          )
         }
       />
       <div className="screen home">
@@ -190,7 +199,7 @@ export function GameOverScreen({
             <p className="best-line">Personal best · {best}</p>
           )}
         </div>
-        {result > 0 && post !== 'done' && (
+        {leaderboardEnabled && result > 0 && post !== 'done' && (
           <div className="post-row">
             <input
               className="nick-input"
@@ -222,7 +231,9 @@ export function GameOverScreen({
         <button className="btn-filled" onClick={onPlayAgain}>Play again</button>
         <div className="row">
           <button className="btn-tonal" onClick={share}>{copied ? 'Copied!' : 'Share score'}</button>
-          <button className="btn-text" onClick={onBoard}>Leaderboard</button>
+          {leaderboardEnabled && (
+            <button className="btn-text" onClick={onBoard}>Leaderboard</button>
+          )}
           <button className="btn-text" onClick={onHome}>Home</button>
         </div>
       </div>

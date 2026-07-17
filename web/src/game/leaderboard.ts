@@ -1,10 +1,14 @@
 import { Mode } from './state'
 
-// Reuses the original Doggo Android app's Firebase project. These values are
-// public client identifiers (already shipped in the APK / repo); access
-// control lives in Firestore security rules.
-const PROJECT_ID = (import.meta.env.VITE_FB_PROJECT_ID as string) || 'doggo-bcit'
-const API_KEY = (import.meta.env.VITE_FB_API_KEY as string) || 'AIzaSyBa3fhD0u6wbHOS2rXA5El9juum1e6Ai8I'
+// Firebase web client config, injected at build time (see .env.example).
+// The values are public client identifiers — access control lives in
+// Firestore security rules — but they're kept out of source on principle.
+// When unset, the leaderboard UI hides itself and the game works fully
+// offline-first with localStorage bests.
+const PROJECT_ID = import.meta.env.VITE_FB_PROJECT_ID as string | undefined
+const API_KEY = import.meta.env.VITE_FB_API_KEY as string | undefined
+
+export const leaderboardEnabled = Boolean(PROJECT_ID && API_KEY)
 
 const BASE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`
 const TIMEOUT_MS = 8000
